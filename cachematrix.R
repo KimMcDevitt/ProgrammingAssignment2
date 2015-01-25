@@ -43,6 +43,7 @@ makeCacheMatrix <- function(x){
         setmatrix<-function(solve) m<<- solve
         getmatrix<-function() m
         list(set=set, get=get, setmatrix = setmatrix, getmatrix=getmatrix)
+        print(set, get, setmatrix, getmatrix)
 }
 
 ## This function computes the inverse of the special matrix returned by makeCacheMatrix.  If the inverse has already been calculated
@@ -59,6 +60,6 @@ cacheSolve <- function(x=matrix(), ...){
         m
 
 }
-x <- matrix(runif(1:100, 5,20), 10, 10)
+x <- matrix(sample(16,16,T)4,4)
 makeXCache <- makeCacheMatrix(x)
 makeXcacheSolve <- cacheSolve(x)
