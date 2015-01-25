@@ -1,9 +1,9 @@
 ## Programming Assignment 2
 ## Write a pair of functions to cache the inverse of a matrix
 
-## This function creates a special matrix object that can cache it's inverse
+## This function sets the value of the vector and sets the mean.  It also gets the value and the mean
 
-makeCacheMatrix <- function(x = matrix()) {
+makeVector <- function(x = matrix()) {
         m <- NULL
         set <- function(y) {
                 x <<- y
@@ -15,14 +15,12 @@ makeCacheMatrix <- function(x = matrix()) {
         list(set = set, get = get, 
                 setmean = setmean,
                 getmean = getmean)
-
 }
 
+## calcuates the mean of hte special vecotr created from the makeVector function.  It checks to see if it exists and it if does
+## returns that value otheriwse it calculates the mean.  
 
-## This function computes the inverse of the special matrix returned by makeCacheMatrix.  If the inverse has already been calculated
-##  (and the matrix has not changed), then the cachesolve should retrieve the matrics from the cache.  
-
-cacheSolve <- function(x, ...) {
+cachemean <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         mean <- x$getmean()
         if(!is.null(m)) {
@@ -33,6 +31,33 @@ cacheSolve <- function(x, ...) {
         m <- mean(data, ...)
         x$setmean(m)
         m
+}
+## This function creates a special matrix object that can cache it's inverse
+makeCacheMatrix <- function(x){
+        m<-NULL
+        set<-function(y){
+                x<<-y
+                m<<-NULL
+        }
+        get<- function() x
+        setmatrix<-function(solve) m<<- solve
+        getmatrix<-function() m
+        list(set=set, get=get, setmatrix = setmatrix, getmatrix=getmatrix)
+}
+
+## This function computes the inverse of the special matrix returned by makeCacheMatrix.  If the inverse has already been calculated
+##  (and the matrix has not changed), then the cachesolve should retrieve the matrics from the cache.  
+cacheSolve <- function(x=matrix(), ...){
+        m<- x$getmatrix()
+        if(!is.null(m)){ 
+                message("getting cached data")
+                return(m)
+        }
+        matrix <- x$get()
+        m<-solve(matrix, ...)
+        x$setmatrix(m)
+        m
+
 }
 x <- matrix(runif(1:100, 5,20), 10, 10)
 makeXCache <- makeCacheMatrix(x)
