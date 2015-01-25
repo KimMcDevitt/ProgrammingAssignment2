@@ -40,11 +40,11 @@ makeCacheMatrix <- function(x){
                 m <<- NULL
         }
         get <- function () x
-        setmean <- function(mean) m <<- mean
-        getmean <- function() m
+        setsolve <- function(solve) m <<- solve
+        getsolve <- function() m
         list(set = set, get = get, 
-                setmean = setmean,
-                getmean = getmean)
+                setsolve = setsolve,
+                getsolve = getsolve)
 }
 
 ## This function computes the inverse of the special matrix returned by makeCacheMatrix.  If the inverse has already been calculated
@@ -56,8 +56,8 @@ cacheSolve <- function(x=matrix(), ...){
                 return(m)
         }
         data <- x$get()
-        m <- mean(data, ...)
-        x$setmean(m)
+        m <- solve(data, ...)
+        x$setsolve(m)
         m
 
 }
@@ -65,7 +65,6 @@ cacheSolve <- function(x=matrix(), ...){
 
 x <-matrix(sample(16,16,T),4,4)
 a <- makeCacheMatrix(x)
-summary(a)
-a$getMatrix()
-cacheSolve(a)
+a$get()
+a$getsolve()
 cacheSolve(a)
