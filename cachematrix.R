@@ -34,3 +34,6 @@ cacheSolve <- function(x, ...) {
         x$setmean(m)
         m
 }
+x <- matrix(runif(1:100, 5,20), 10, 10)
+makeXCache <- makeCacheMatrix(x)
+makeXcacheSolve <- cacheSolve(x)
