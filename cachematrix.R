@@ -50,7 +50,7 @@ makeCacheMatrix <- function(x){
 ## This function computes the inverse of the special matrix returned by makeCacheMatrix.  If the inverse has already been calculated
 ##  (and the matrix has not changed), then the cachesolve should retrieve the matrics from the cache.  
 cacheSolve <- function(x=matrix(), ...){
-        m <- x$getmean()
+        m <- x$getsolve()
         if(!is.null(m)) {
                 message("getting cached data")
                 return(m)
