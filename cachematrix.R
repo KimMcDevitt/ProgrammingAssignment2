@@ -19,10 +19,9 @@ makeVector <- function(x = matrix()) {
 
 ## calcuates the mean of hte special vecotr created from the makeVector function.  It checks to see if it exists and it if does
 ## returns that value otheriwse it calculates the mean.  
-
 cachemean <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-        mean <- x$getmean()
+        m <- x$getmean()
         if(!is.null(m)) {
                 message("getting cached data")
                 return(m)
@@ -32,6 +31,7 @@ cachemean <- function(x, ...) {
         x$setmean(m)
         m
 }
+
 ## This function creates a special matrix object that can cache it's inverse
 makeCacheMatrix <- function(x){
         m<-NULL
@@ -49,17 +49,22 @@ makeCacheMatrix <- function(x){
 ## This function computes the inverse of the special matrix returned by makeCacheMatrix.  If the inverse has already been calculated
 ##  (and the matrix has not changed), then the cachesolve should retrieve the matrics from the cache.  
 cacheSolve <- function(x=matrix(), ...){
-        m<- x$getmatrix()
+        m <- x$getmatrix()
         if(!is.null(m)){ 
                 message("getting cached data")
                 return(m)
         }
-        matrix <- x$get()
-        m<-solve(matrix, ...)
+       data <- x$get()
+        m <-solve(data, ...)
         x$setmatrix(m)
         m
 
 }
-x <- matrix(sample(16,16,T)4,4)
-makeXCache <- makeCacheMatrix(x)
-makeXcacheSolve <- cacheSolve(x)
+## create a square matrix becuase solve only handles square matricies
+
+x <-matrix(sample(16,16,T),4,4)
+a <- makeCacheMatrix(x)
+summary(a)
+a$getMatrix()
+cacheSolve(a)
+cacheSolve(a)
