@@ -1,7 +1,8 @@
 ## Programming Assignment 2
 ## Write a pair of functions to cache the inverse of a matrix
 
-## This function sets the value of the vector and sets the mean.  It also gets the value and the mean
+## This function sets the value of the vector and sets the mean.  It also gets the value and the mean and is sample code
+## in the assignment
 
 makeVector <- function(x = matrix()) {
         m <- NULL
@@ -17,8 +18,8 @@ makeVector <- function(x = matrix()) {
                 getmean = getmean)
 }
 
-## calcuates the mean of hte special vecotr created from the makeVector function.  It checks to see if it exists and it if does
-## returns that value otheriwse it calculates the mean.  
+## calcuates the mean of hte special vector created from the makeVector function.  It checks to see if it exists and it if does
+## returns that value otheriwse it calculates the mean. It is also sample code in the assignment. 
 cachemean <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         m <- x$getmean()
@@ -32,7 +33,7 @@ cachemean <- function(x, ...) {
         m
 }
 
-## This function creates a special matrix object that can cache it's inverse
+## This function creates a special matrix object that can cache it's inverse.  It is the function that I wrote.
 makeCacheMatrix <- function(x){
         m <- NULL
         set <- function(y) {
@@ -48,7 +49,8 @@ makeCacheMatrix <- function(x){
 }
 
 ## This function computes the inverse of the special matrix returned by makeCacheMatrix.  If the inverse has already been calculated
-##  (and the matrix has not changed), then the cachesolve should retrieve the matrics from the cache.  
+##  (and the matrix has not changed), then the cachesolve should retrieve the matrics from the cache.  It is the function I wrote.
+
 cacheSolve <- function(x=matrix(), ...){
         m <- x$getsolve()
         if(!is.null(m)) {
@@ -61,7 +63,7 @@ cacheSolve <- function(x=matrix(), ...){
         m
 
 }
-## create a square matrix becuase solve only handles square matricies
+## create a square matrix becuase solve only handles square matricies.
 
 x <-matrix(sample(16,16,T),4,4)
 a <- makeCacheMatrix(x)
